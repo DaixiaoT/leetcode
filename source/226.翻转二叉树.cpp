@@ -21,7 +21,8 @@ class Solution
 public:
     TreeNode *invertTree(TreeNode *root)
     {
-        stack<TreeNode *> s;
+   
+        stack<TreeNode*> s;
         if (root == nullptr)
         {
             return nullptr;
@@ -31,17 +32,18 @@ public:
         while (!s.empty())
         {
 
-            while (temp->left)
-            {
-                s.push(temp);
-                temp = temp->left;
-            }
-            TreeNode* t=s.top();
-            s.pop();
+            TreeNode* t = s.top();
+           
             swap(t->left,t->right);
-            while(t->right){
-                s.push()
+            
+            s.pop();
+            if(t->left){
+                s.push(t->left);
             }
+            if(t->right){
+                s.push(t->right);
+            }
+            
         }
 
         return root;
