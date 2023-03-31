@@ -16,11 +16,23 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
-    TreeNode* sortedArrayToBST(vector<int>& nums) {
-        
+    TreeNode *sortedArrayToBST(vector<int> &nums)
+    {
+        return tool(nums, 0, nums.size()-1);
     }
+    TreeNode *tool(vector<int> &nums, int left, int right){
+        if(left > right){
+            return nullptr;
+        }
+        int mid = (left+right+1)/2;
+        TreeNode *root = new TreeNode(nums[mid]);
+        root->left = tool(nums,left,mid-1);
+        root->right = tool(nums,mid+1, right);
+        return root;
+    }
+    
 };
 // @lc code=end
-
